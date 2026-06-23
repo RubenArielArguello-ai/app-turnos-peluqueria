@@ -1,0 +1,374 @@
+/* ============================================================
+   FUENTES — importadas de Google Fonts
+   Playfair Display: para títulos, estilo clásico de barbería
+   DM Sans: para texto general, limpia y moderna
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500&display=swap');
+ 
+ 
+/* ============================================================
+   VARIABLES GLOBALES
+   Cambiá estos valores para ajustar toda la paleta de colores
+   desde un solo lugar.
+   ============================================================ */
+:root {
+  --negro:        #111010;   /* fondo principal */
+  --crema:        #F5F0E8;   /* texto principal */
+  --dorado:       #C9A84C;   /* color acento — botones, bordes especiales */
+  --dorado-claro: #E8D5A3;   /* hover del botón principal */
+  --carbon:       #2A2A2A;   /* fondo de cards y campos */
+  --gris-medio:   #6B6B6B;   /* texto secundario / labels */
+  --gris-claro:   #E8E3D8;   /* bordes en modo claro (no se usa acá pero útil) */
+  --blanco:       #FEFCF8;   /* blanco cálido */
+  --rojo:         #C0392B;   /* color eliminar */
+}
+ 
+ 
+/* ============================================================
+   RESET Y BASE
+   Elimina márgenes y paddings por defecto del navegador.
+   box-sizing: border-box hace que el padding no agrande los elementos.
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--negro);
+  color: var(--crema);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+ 
+ 
+/* ============================================================
+   HEADER
+   ============================================================ */
+header {
+  background: var(--negro);
+  border-bottom: 1px solid var(--dorado);
+  padding: 2rem 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+}
+ 
+/* Línea decorativa dorada arriba del título */
+header::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--dorado);
+  margin: 0 auto 1rem;
+}
+ 
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  color: var(--crema);
+  text-transform: uppercase;
+}
+ 
+/* Si querés que parte del título sea dorada, envolvé esa
+   parte en un <span> dentro del <h1> */
+header h1 span {
+  color: var(--dorado);
+}
+ 
+header p {
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gris-medio);
+  margin-top: 0.4rem;
+}
+ 
+ 
+/* ============================================================
+   LAYOUT PRINCIPAL
+   En pantallas grandes: dos columnas (formulario | lista)
+   En celular: una sola columna (apiladas)
+   ============================================================ */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* dos columnas iguales */
+  gap: 2rem;
+  align-items: start;
+}
+ 
+/* En pantallas angostas (celular), pasa a una sola columna */
+@media (max-width: 650px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+ 
+section {
+  width: 100%;
+}
+ 
+ 
+/* ============================================================
+   TÍTULOS DE SECCIÓN (h2)
+   ============================================================ */
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--dorado);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #333;
+}
+ 
+ 
+/* ============================================================
+   FORMULARIO — CAMPOS
+   Cada campo tiene un <div class="campo"> que agrupa
+   el label y el input juntos.
+   ============================================================ */
+.campo {
+  margin-bottom: 1rem;
+}
+ 
+label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gris-medio);
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+ 
+input,
+select,
+textarea {
+  width: 100%;
+  background: var(--carbon);
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  color: var(--crema);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  padding: 0.65rem 0.85rem;
+  transition: border-color 0.2s ease;
+  outline: none;
+  appearance: none;          /* elimina estilos nativos del navegador en selects */
+  -webkit-appearance: none;
+}
+ 
+/* Borde dorado al enfocar */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--dorado);
+}
+ 
+/* Texto de placeholder (el texto gris de ayuda) */
+input::placeholder,
+textarea::placeholder {
+  color: #555;
+}
+ 
+/* Color de fondo de las opciones del <select> en el menú desplegable */
+select option {
+  background: var(--carbon);
+  color: var(--crema);
+}
+ 
+/* El input type="date" a veces muestra el ícono en blanco,
+   esto lo colorea para que se vea sobre fondo oscuro */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.6);
+  cursor: pointer;
+}
+ 
+textarea {
+  resize: vertical;     /* solo se puede redimensionar verticalmente */
+  min-height: 70px;
+}
+ 
+ 
+/* ============================================================
+   BOTÓN PRINCIPAL — "Reservar turno"
+   ============================================================ */
+button[type="submit"] {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.85rem;
+  background: var(--dorado);
+  color: var(--negro);
+  border: none;
+  border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+ 
+button[type="submit"]:hover {
+  background: var(--dorado-claro);
+}
+ 
+button[type="submit"]:active {
+  transform: scale(0.98);   /* efecto de "presionado" al hacer clic */
+}
+ 
+ 
+/* ============================================================
+   SECCIÓN DE TURNOS — Filtros
+   ============================================================ */
+#filtros {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+ 
+#filtros input {
+  font-size: 0.82rem;
+}
+ 
+ 
+/* ============================================================
+   CONTADOR DE TURNOS
+   ============================================================ */
+#contador-turnos {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gris-medio);
+  margin-bottom: 1rem;
+}
+ 
+ 
+/* ============================================================
+   TARJETA DE TURNO
+   Cada turno reservado se muestra como una tarjeta.
+   JavaScript crea estas tarjetas dinámicamente con innerHTML.
+   ============================================================ */
+.tarjeta-turno {
+  background: var(--carbon);
+  border: 1px solid #3a3a3a;
+  border-left: 3px solid var(--dorado);   /* línea dorada a la izquierda */
+  border-radius: 4px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  animation: aparecer 0.25s ease;   /* animación al agregar */
+}
+ 
+/* Animación suave cuando aparece una tarjeta nueva */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
+/* Columna izquierda: datos del turno */
+.tarjeta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+ 
+.tarjeta-info strong {
+  font-size: 0.95rem;
+  color: var(--crema);
+}
+ 
+.tarjeta-info span {
+  font-size: 0.8rem;
+  color: var(--gris-medio);
+}
+ 
+.tarjeta-info small {
+  font-size: 0.7rem;
+  color: #444;
+  margin-top: 4px;
+}
+ 
+/* Columna derecha: botones de acción */
+.tarjeta-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;   /* evita que los botones se achiquen */
+}
+ 
+/* Botón "Recordatorio WhatsApp" */
+.btn-whatsapp {
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  background: transparent;
+  border: 1px solid var(--dorado);
+  color: var(--dorado);
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+ 
+.btn-whatsapp:hover {
+  background: var(--dorado);
+  color: var(--negro);
+}
+ 
+/* Botón "Eliminar" */
+.btn-eliminar {
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  background: transparent;
+  border: 1px solid #555;
+  color: #777;
+  transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+ 
+.btn-eliminar:hover {
+  border-color: var(--rojo);
+  color: var(--rojo);
+}
+ 
+ 
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  border-top: 1px solid #222;
+  font-size: 0.75rem;
+  color: #444;
+  letter-spacing: 0.1em;
+  margin-top: 1rem;
+  line-height: 1.8;
+}

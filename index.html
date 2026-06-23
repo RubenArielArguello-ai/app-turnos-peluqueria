@@ -1,0 +1,149 @@
+
+
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Turnos-raraespecifica</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <header>
+    <h1>✂️ Peluquería</h1>
+    <p>Reservá tu turno fácil y rápido</p>
+  </header>
+
+  <main>
+
+    <section id="seccion-reserva">
+
+      <h2>Reservar turno</h2>
+
+      <form id="formulario-turno">
+
+        <div class="campo">
+          <label for="nombre">Nombre del cliente</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Ej: Carlos García"
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label for="telefono">Teléfono (opcional)</label>
+          <input
+            type="tel"
+            id="telefono"
+            name="telefono"
+            placeholder="Ej: 11 2345-6789"
+          >
+        </div>
+
+        <div class="campo">
+          <label for="servicio">Servicio</label>
+          <select id="servicio" name="servicio" required>
+            <option value="">-- Elegí un servicio --</option>
+            <option value="corte">Corte de pelo</option>
+            <option value="afeitado">Afeitado</option>
+            <option value="corte-barba">Corte + Barba</option>
+            <option value="tintura">Tintura</option>
+            <option value="tratamiento">Tratamiento capilar</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="fecha">Fecha</label>
+          <input
+            type="date"
+            id="fecha"
+            name="fecha"
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label for="hora">Hora</label>
+          <select id="hora" name="hora" required>
+            <option value="">-- Elegí un horario --</option>
+            <option value="09:00">09:00</option>
+            <option value="09:30">09:30</option>
+            <option value="10:00">10:00</option>
+            <option value="10:30">10:30</option>
+            <option value="11:00">11:00</option>
+            <option value="11:30">11:30</option>
+            <option value="14:00">14:00</option>
+            <option value="14:30">14:30</option>
+            <option value="15:00">15:00</option>
+            <option value="15:30">15:30</option>
+            <option value="16:00">16:00</option>
+            <option value="16:30">16:30</option>
+            <option value="17:00">17:00</option>
+            <option value="17:30">17:30</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="notas">Notas (opcional)</label>
+          <textarea
+            id="notas"
+            name="notas"
+            placeholder="Ej: prefiere con tijera, alérgico a X producto..."
+            rows="3"
+          ></textarea>
+        </div>
+
+        <button type="submit" id="boton-reservar">
+          Reservar turno
+        </button>
+
+      </form>
+    </section>
+
+    <section id="seccion-turnos">
+
+      <h2>Turnos reservados</h2>
+
+      <div id="filtros">
+        <input
+          type="text"
+          id="filtro-nombre"
+          placeholder="🔍 Buscar por nombre..."
+        >
+        <input
+          type="date"
+          id="filtro-fecha"
+        >
+      </div>
+
+      <p id="contador-turnos">No hay turnos reservados todavía.</p>
+
+      <div id="lista-turnos"></div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 Peluquería &mdash; Todos los derechos reservados</p>
+    <p>
+      📍 Dirección: Tu calle 123, Tu ciudad
+      &nbsp;|&nbsp;
+      📞 Tel: 11 1234-5678
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
